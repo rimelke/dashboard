@@ -3,5 +3,6 @@ declare namespace NodeJS {
         NODE_ENV?: 'development' | 'production' | 'test'
         PORT?: number
         SECRET?: string
+        PG_CONNECTION_STRING?: string
     }
 }

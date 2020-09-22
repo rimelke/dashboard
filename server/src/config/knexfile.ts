@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import path from 'path'
 
 const knexConfig = {
@@ -20,7 +22,14 @@ const knexConfig = {
         }
     },
     production: {
-        
+        client: 'pg',
+        connection: process.env.PG_CONNECTION_STRING,
+        migrations: {
+            directory: path.resolve(__dirname, '..', 'database', 'migrations')
+        },
+        seeds: {
+            directory: path.resolve(__dirname, '..', 'database', 'seeds')
+        }
     },
     test: {
         client: 'sqlite3',
