@@ -37,7 +37,7 @@ routes.get('/spents', spentsController.index)
 routes.post('/spents', celebrate({
     body: Joi.object().keys({
         payer_id: Joi.number().positive().integer().required(),
-        date: Joi.string().isoDate(),
+        date: Joi.string().regex(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/).required(),
         beneficiary: Joi.string().required(),
         resume: Joi.string().required(),
         description: Joi.string(),

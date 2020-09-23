@@ -1,0 +1,52 @@
+#spentsPage {
+    padding: .5rem 1.5rem;
+    flex: 1;
+}
+
+#spentsPage > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+#spentsPage h2 {
+    color: #153B50;
+}
+
+#spentsPage .btn {
+    background: #206980;
+    color: #FFF;
+    text-decoration: none;
+}
+
+#spentsPage .btn:hover {
+    background: #153B50;
+}
+
+#spentsPage table {
+    background: #FFF;
+    border-radius: .5rem;
+    width: 100%;
+    border-collapse: separate;
+    padding: 1rem;
+}
+
+#spentsPage tbody tr {
+    cursor: pointer;
+}
+
+#spentsPage tbody tr:hover {
+    color: #2A97B0;
+}
+
+#spentsPage td, #spentsPage th {
+    padding: .4rem;
+}
+
+#spentsPage th {
+    text-align: start;
+}
+
+#spentsPage td:nth-child(5), #spentsPage th:nth-child(5) {
+    text-align: end;
+}

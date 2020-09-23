@@ -1,0 +1,43 @@
+#payersPage {
+    padding: .5rem 1.5rem;
+    flex: 1;
+}
+
+#payersPage h2 {
+    color: #153B50;
+    padding: 1rem 0 0 1rem;
+}
+
+#payersPage form {
+    padding: 1rem;
+}
+
+#payersPage form button {
+    background: #206980;
+    color: #FFF;
+    margin-left: 1rem;
+}
+
+#payersPage form button:hover {
+    background: #153B50;
+}
+
+#payersPage table {
+    background: #FFF;
+    border-radius: .5rem;
+    width: 100%;
+    border-collapse: separate;
+    padding: 1rem;
+}
+
+#payersPage td, #payersPage th {
+    padding: .4rem;
+}
+
+#payersPage th:nth-child(1) {
+    text-align: start;
+}
+
+#payersPage td:nth-child(2), #payersPage th:nth-child(2) {
+    text-align: end;
+}

@@ -1,0 +1,32 @@
+#loginPage {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginPage form {
+    display: flex;
+    flex-direction: column;
+}
+
+#loginPage h2 {
+    padding: .6rem;
+    font-size: 1.2rem;
+    color: #153B50;
+}
+
+#loginPage form > * {
+    margin: .15rem;
+}
+
+#loginPage .btn {
+    background: #206980;
+    color: #FFF;
+    transition: background 0.2s;
+}
+
+#loginPage .btn:hover {
+    background: #153B50;
+}

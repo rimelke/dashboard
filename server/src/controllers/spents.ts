@@ -5,6 +5,9 @@ export default {
     async index(req: Request, res: Response) {
         try {
             const spents = await db('spents')
+                .join('payers', 'spents.payer_id', '=', 'payers.id')
+                .select(['spents.id', 'spents.date', 'spents.beneficiary', 'spents.resume', 'spents.amount', 'payers.name as payer_name'])
+                .orderBy('spents.date', 'desc')
 
             res.json(spents)
         } catch (e) {
