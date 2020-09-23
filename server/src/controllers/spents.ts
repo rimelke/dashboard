@@ -16,6 +16,24 @@ export default {
         }
     },
 
+    async show(req: Request, res: Response) {
+        try {
+            const { id } = req.params
+            const spent = await db('spents')
+                .join('payers', 'spents.payer_id', '=', 'payers.id')
+                .join('users', 'spents.user_id', '=', 'users.id')
+                .where('spents.id', id)
+                .select(['spents.*', 'payers.name as payer_name', 'users.username as user_name'])
+                .first()
+
+            if (spent) res.json(spent)
+            else res.status(400).json({message: 'Spent not found'})
+        } catch (e) {
+            console.log(e)
+            res.status(400).json({message: 'Something went wrong, try again'})
+        }
+    },
+
     async create(req: Request, res: Response) {
         try {
             const user_id = req.user_id
