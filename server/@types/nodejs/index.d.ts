@@ -3,6 +3,9 @@ declare namespace NodeJS {
         NODE_ENV?: 'development' | 'production' | 'test'
         PORT?: number
         SECRET?: string
-        PG_CONNECTION_STRING?: string
+        DB_HOST?: string
+        DB_USER?: string
+        DB_PASSWORD?: string
+        DB_NAME?: string
     }
 }
