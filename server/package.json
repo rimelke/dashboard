@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node build/server.js",
-    "migrate": "knex --env production --knexfile build/config/knexfile.js migrate:latest",
-    "seed": "knex --env production --knexfile build/config/knexfile.js seed:run",
+    "migrate": "knex --knexfile build/config/knexfile.js migrate:latest",
+    "seed": "knex --knexfile build/config/knexfile.js seed:run",
     "build": "rimraf build && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
