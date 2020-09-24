@@ -35,13 +35,24 @@ export default {
     },
 
     async create(req: Request, res: Response) {
+        const trx = await db.transaction()
+
         try {
             const user_id = req.user_id
 
-            await db('spents').insert({...req.body, user_id})
+            await trx('spents').insert({...req.body, user_id})
+
+            const spents = await trx('spents').sum({sum: 'amount'}).where('payer_id', req.body.payer_id).first()
+
+            await trx('payers').update({
+                balance: spents?.sum
+            }).where('id', req.body.payer_id)
+
+            await trx.commit()
 
             res.status(201).send()
         } catch (e) {
+            await trx.rollback(e)
             console.log(e)
             res.status(400).json({message: 'Something went wrong, try again'})
         }
