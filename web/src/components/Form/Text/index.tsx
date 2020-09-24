@@ -6,7 +6,7 @@ interface Props {
 	label?: string
 }
 
-type InputProps = JSX.IntrinsicElements['input'] & Props;
+type InputProps = JSX.IntrinsicElements['textarea'] & Props;
 
 const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
 	const inputRef = useRef(null);
@@ -23,10 +23,10 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
 	return label ? (
 		<div className="inputBlock">
 			<label htmlFor={fieldName}>{label}</label>
-			<input id={fieldName} className="input" ref={inputRef} defaultValue={defaultValue} {...rest} />
+			<textarea id={fieldName} className="input" ref={inputRef} defaultValue={defaultValue} {...rest} />
 		</div>
 	) : (
-		<input id={fieldName} className="input" ref={inputRef} defaultValue={defaultValue} {...rest} />
+		<textarea id={fieldName} className="input" ref={inputRef} defaultValue={defaultValue} {...rest} />
 	)
 }
 

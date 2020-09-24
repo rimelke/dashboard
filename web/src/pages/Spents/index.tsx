@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import api from '../../services/api'
 
 import './styles.css'
@@ -15,6 +15,7 @@ interface Spent {
 
 const Spents: React.FC = () => {
     const [spents, setSpents] = useState<Spent[]>([])
+    const history = useHistory()
 
     useEffect(getSpents, [])
 
@@ -22,6 +23,10 @@ const Spents: React.FC = () => {
         api.get('/spents')
         .then(res => setSpents(res.data))
         .catch(console.log)
+    }
+
+    function handleRowClick(spent_id: number) {
+        history.push(`/spents/detail/${spent_id}`)
     }
 
     return (
@@ -42,7 +47,7 @@ const Spents: React.FC = () => {
                 </thead>
                 <tbody>
                     {spents.map(spent => (
-                        <tr key={spent.id}>
+                        <tr onClick={() => handleRowClick(spent.id)} key={spent.id}>
                             <td>{new Date(spent.date + ' UTC').toLocaleString([], {
                                 year: 'numeric',
                                 month: 'numeric',

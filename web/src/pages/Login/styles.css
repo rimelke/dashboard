@@ -26,6 +26,16 @@
     background: #206980;
     color: #FFF;
     transition: background 0.2s;
+    display: flex;
+    justify-content: center;
+	align-items: center;
+}
+
+#loginPage .btn svg {
+	display: block;
+	margin-right: .3rem;
+	width: 1.15rem;
+	height: 1.15rem;
 }
 
 #loginPage .btn:hover {

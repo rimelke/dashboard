@@ -22,9 +22,9 @@ const Login: React.FC = () => {
             }}>
                 <Input name="username" autoComplete="off" placeholder="Username" className="input" required />
                 <Input name="password" placeholder="Senha" className="input" type="password" required />
-                <button className="btn" type="submit">Login {loading && 
+                <button className="btn" type="submit">{loading && 
                     <FiLoader className="spin" />
-                }</button>
+                }Login</button>
             </Form>
         </main>
     )

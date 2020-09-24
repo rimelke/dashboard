@@ -7,6 +7,7 @@ import Home from '../pages/Home'
 import Payers from '../pages/Payers'
 import Spents from '../pages/Spents'
 import DetailedSpent from '../pages/DetailedSpent'
+import NewSpent from '../pages/NewSpent'
 
 const AppRoutes: React.FC = () => {
 	return (
@@ -15,7 +16,8 @@ const AppRoutes: React.FC = () => {
 			<Route path="/" exact component={Home} />
 			<Route path="/payers" exact component={Payers} />
 			<Route path="/spents" exact component={Spents} />
-			<Route path="/spents/:id" exact component={DetailedSpent} />
+			<Route path="/spents/new" exact component={NewSpent} />
+			<Route path="/spents/detail/:id" component={DetailedSpent} />
 		</BrowserRouter>
 	)
 }
