@@ -38,7 +38,7 @@ const DetailedSpent: React.FC = (props) => {
             console.log(e)
             alert('Algo deu errado, recarregue a pagina e tente novamente')
         })
-    }, [])
+    }, [id])
 
     return (
         <main id="detailedSpentPage">

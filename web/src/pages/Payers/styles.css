@@ -10,6 +10,7 @@
 
 #payersPage form {
     padding: 1rem;
+    display: flex;
 }
 
 #payersPage form button {
