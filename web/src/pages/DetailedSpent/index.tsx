@@ -32,7 +32,6 @@ const DetailedSpent: React.FC = (props) => {
 
     useEffect(() => {
         api.get(`/spents/${id}`).then(res => {
-            console.log(res.data)
             setSpent(res.data)
         }).catch(e => {
             console.log(e)
