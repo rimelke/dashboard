@@ -57,12 +57,12 @@ export default {
             res.status(400).json({message: 'Something went wrong, try again'})
         }
     },
-    /*
-    async update(req: Request, res: Response) {
+
+    async delete(req: Request, res: Response) {
         try {
             const { id } = req.params
 
-            await db('spents').update(req.body).where('id', id)
+            await db('spents').where('id', id).del()
 
             res.send()
         } catch (e) {
@@ -70,5 +70,4 @@ export default {
             res.status(400).json({message: 'Something went wrong, try again'})
         }
     }
-    */
 }

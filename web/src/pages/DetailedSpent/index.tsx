@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import api from '../../services/api'
+import { FiTrash } from 'react-icons/fi'
+import swal from 'sweetalert2'
 
 import './styles.css'
 
@@ -29,6 +31,7 @@ interface Params {
 const DetailedSpent: React.FC = (props) => {
     const { id } = useParams<Params>()
     const [spent, setSpent] = useState<Spent | null>(null)
+    const history = useHistory()
 
     useEffect(() => {
         api.get(`/spents/${id}`).then(res => {
@@ -38,6 +41,32 @@ const DetailedSpent: React.FC = (props) => {
             alert('Algo deu errado, recarregue a pagina e tente novamente')
         })
     }, [id])
+
+    function handleDelete() {
+        swal.fire({
+            title: 'Tens certeza disso?',
+            text: "Não tem como voltar atrás, hein!",
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            focusCancel: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, quero excluir!'
+        }).then(result => {
+            if (result.isConfirmed) {
+                api.delete(`/spents/${id}`).then(res => {
+                    history.push('/spents')
+                }).catch(err => {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Opaa...',
+                        text: 'Algo deu errado, recarregue a página e tente novamente!',
+                    })
+                })
+            }
+        })
+    }
 
     return (
         <main id="detailedSpentPage">
@@ -96,6 +125,7 @@ const DetailedSpent: React.FC = (props) => {
                         </tr>
                     </table>
                 </div>
+                <button className="del" type="button" onClick={handleDelete}><FiTrash /><span>Excluir gasto</span></button>
             </div>
         </main>
     )

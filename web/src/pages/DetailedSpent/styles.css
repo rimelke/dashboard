@@ -28,3 +28,22 @@
 #detailedSpentPage td:nth-child(1) {
     font-weight: bold;
 }
+
+#detailedSpentPage .del {
+    border: none;
+    background: darkred;
+    color: white;
+    padding: .5rem;
+    border-radius: .5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+}
+
+#detailedSpentPage .del:hover {
+    background: rgb(97, 0, 0);
+}
+
+#detailedSpentPage .del span {
+    margin-left: .5rem;
+}

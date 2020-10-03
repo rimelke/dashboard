@@ -50,6 +50,10 @@ routes.post('/spents', celebrate({
         amount: Joi.number().positive().required()
     }).required()
 }, {abortEarly: false}), spentsController.create)
-
+routes.delete('/spents/:id', celebrate({
+    params: Joi.object().keys({
+        id: Joi.number().positive().integer().required()
+    }).required()
+}, {abortEarly: false}), spentsController.delete)
 
 export default routes
