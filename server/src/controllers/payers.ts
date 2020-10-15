@@ -35,5 +35,22 @@ export default {
             console.log(e)
             res.status(400).json({message: 'Something went wrong, try again'})
         }
+    },
+
+    async delete(req: Request, res: Response) {
+        const { id } = req.params
+
+        try {
+            const spents = await db('spents').where('payer_id', id)
+
+            if (spents.length === 0) {
+                await db('payers').where('id', id).del()
+
+                res.send()
+            } else res.status(400).json({message: 'There is spents associated to this payer'})
+        } catch (e) {
+            console.log(e)
+            res.status(400).json({message: 'Something went wrong, try again'})
+        }
     }
 }

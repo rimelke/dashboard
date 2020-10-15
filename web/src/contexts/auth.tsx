@@ -31,6 +31,7 @@ export const AuthProvider: React.FC = ({ children }) => {
                 localStorage.setItem('token', res.data.token)
                 resolve()
             }).catch(err => {
+                console.log(err)
                 reject(err.response.data)
             })
         })

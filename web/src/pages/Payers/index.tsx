@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import api from '../../services/api'
 import { Form } from '@unform/web'
 import { Input } from '../../components/Form'
+import swal from 'sweetalert2'
 
 import './styles.css'
 
@@ -31,6 +32,32 @@ const Payers: React.FC = () => {
         })
     }
 
+    function handleDelete(payer_id: number) {
+        swal.fire({
+            title: 'Tens certeza disso?',
+            text: "Não tem como voltar atrás, hein!",
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            focusCancel: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, quero excluir!'
+        }).then(result => {
+            if (result.isConfirmed) {
+                api.delete(`/payers/${payer_id}`)
+                .then(getPayers)
+                .catch(err => {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Opaa...',
+                        text: 'Algo deu errado, recarregue a página e tente novamente!',
+                    })
+                })
+            }
+        })
+    }
+
     return (
         <main id="payersPage">
             <h2>Pagadores</h2>
@@ -50,6 +77,7 @@ const Payers: React.FC = () => {
                         <tr key={payer.id}>
                             <td>{payer.name}</td>
                             <td>{Number(payer.balance).toFixed(2)}</td>
+                            <td><button type="button" className="del" onClick={() => handleDelete(payer.id)}>Excluir pagador</button></td>
                         </tr>
                     ))}
                 </tbody>

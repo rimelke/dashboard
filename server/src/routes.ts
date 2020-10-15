@@ -32,6 +32,11 @@ routes.put('/payers/:id', celebrate({
         id: Joi.number().integer().positive().required()
     }).required()
 }, {abortEarly: false}), payersController.update)
+routes.delete('/payers/:id', celebrate({
+    params: Joi.object().keys({
+        id: Joi.number().positive().integer().required()
+    }).required()
+}, {abortEarly: false}), payersController.delete)
 
 routes.get('/spents', spentsController.index)
 routes.get('/spents/:id', celebrate({

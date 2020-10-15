@@ -59,13 +59,26 @@ export default {
     },
 
     async delete(req: Request, res: Response) {
+        const trx = await db.transaction()
+
         try {
             const { id } = req.params
 
-            await db('spents').where('id', id).del()
+            const { payer_id } = await trx('spents').where('id', id).first()
+
+            await trx('spents').where('id', id).del()
+
+            const spents = await trx('spents').sum({sum: 'amount'}).where('payer_id', payer_id).first()
+
+            await trx('payers').update({
+                balance: spents?.sum
+            }).where('id', payer_id)
+
+            await trx.commit()
 
             res.send()
         } catch (e) {
+            await trx.rollback(e)
             console.log(e)
             res.status(400).json({message: 'Something went wrong, try again'})
         }
