@@ -79,7 +79,7 @@ const DetailedSpent: React.FC = (props) => {
                         </tr>
                         <tr className="info">
                             <td>Data</td>
-                            <td>{new Date(spent?.date + ' UTC').toLocaleString([], {
+                            <td>{new Date(spent?.date.split('T')[0] + ' ').toLocaleString([], {
                                 year: 'numeric',
                                 month: 'numeric',
                                 day: 'numeric'
@@ -99,7 +99,7 @@ const DetailedSpent: React.FC = (props) => {
                         </tr>
                         <tr className="info">
                             <td>Criado em</td>
-                            <td>{new Date(spent?.created_at + ' UTC').toLocaleString([], {
+                            <td>{new Date(spent?.created_at.split('T')[0] + ' ').toLocaleString([], {
                                 year: 'numeric',
                                 month: 'numeric',
                                 day: 'numeric'

@@ -48,7 +48,7 @@ const Spents: React.FC = () => {
                 <tbody>
                     {spents.map(spent => (
                         <tr onClick={() => handleRowClick(spent.id)} key={spent.id}>
-                            <td>{new Date(spent.date + ' UTC').toLocaleString([], {
+                            <td>{new Date(spent.date.split('T')[0] + ' ').toLocaleString([], {
                                 year: 'numeric',
                                 month: 'numeric',
                                 day: 'numeric'
